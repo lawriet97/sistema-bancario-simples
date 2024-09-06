@@ -1,10 +1,5 @@
 #programa de sistema bancário para testes e estudo.
 
-usuarios = [
-    {"nome": "cleilson", "cpf": "123123", "senha": "123456", "saldo": 0 },
-]
-          
-
 numero_saque = 0
 LIMITE_SAQUE = 3
 
@@ -27,7 +22,12 @@ Q. sair
 """
 
 
-
+# lista de clientes
+usuarios = [
+    {"nome": "cleilson", "cpf": "123123", "senha": "123456", "saldo": 0 },
+]
+          
+#cria cadastro do cliente e adiciona as informações na lista
 def cadastro():
     while True:
         cad_nome = input("primeiro nome: ")
@@ -51,6 +51,7 @@ def cadastro():
             print(f"usuario {cad_nome} cadastrado com sucesso!")
             break
 
+#acessa informações do cliente, verifica informações e dá acesso
 
 def login():
     while True:
@@ -72,6 +73,7 @@ def login():
         else:
             print(f"erro. {login_usuario} não encontrado")
 
+#realizar depósitos
 
 def deposito():
     while True:
@@ -84,7 +86,7 @@ def deposito():
             else:
                 print("operação falhou")
 
-
+#realiza saques
 
 def saque():
     while True:
@@ -109,33 +111,36 @@ def saque():
             print("erro")
             break
 
-while True:
-    for usuario in usuarios:
-        operacao = input(menu_1)
-        if operacao == "c":
-            cadastro()
-        
-        elif operacao == "l":
-            login()
-        while True:
-            operacao_02 = input(menu_2)
-            if operacao_02 == "d":
-                deposito()
-            elif operacao_02 == "s":
-                saque()
-    
-            elif operacao_02 == "e":
-                print(f"""
-                    -------------------------
-                    | extrato: saldo R${usuario['saldo']} |
-                    -------------------------
-                    """)
+#interação de menu para realizar tarefas
 
-            elif operacao_02 == "q":
-                break
-
-            else:
-                print("digite uma operação válida")
-        else:
-            print("houve um erro inesperado")       
+def menu()
+    while True:
+        for usuario in usuarios:
+            operacao = input(menu_1)
+            if operacao == "c":
+                cadastro()
             
+            elif operacao == "l":
+                login()
+            while True:
+                operacao_02 = input(menu_2)
+                if operacao_02 == "d":
+                    deposito()
+                elif operacao_02 == "s":
+                    saque()
+        
+                elif operacao_02 == "e":
+                    print(f"""
+                        -------------------------
+                        | extrato: saldo R${usuario['saldo']} |
+                        -------------------------
+                        """)
+    
+                elif operacao_02 == "q":
+                    break
+    
+                else:
+                    print("digite uma operação válida")
+            else:
+                print("houve um erro inesperado")       
+
